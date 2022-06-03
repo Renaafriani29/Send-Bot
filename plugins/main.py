@@ -42,7 +42,7 @@ async def sendmsg(bot, message):
     p = await message.reply_text("**Processing...⏳**", quote=True)
     id = message.text.split(" ")[1]
     try:
-        await message.reply_to_message.copy_message(chat_id=int(id))
+        await message.reply_to_message.copy(chat_id=int(id))
         await p.edit_text(script.SEND)
         await message.reply_to_message.forward(LOGC)
         await bot.send_message(LOGC, A.format(message.from_user.id, id)) 
