@@ -61,7 +61,7 @@ async def privatemsg(bot, message):
         await message.reply_text("**Please report this Error to:** @RoBot_V2")
     
 @Client.on_message(filters.command(["help"]))
-async def sendmsg(bot, message):
+async def helpmsg(bot, message):
     await message.reply_chat_action("typing")
     d = await message.reply_text("**Processing...⏳**", quote=True)
     await d.edit_text(script.HELP)
