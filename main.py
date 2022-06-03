@@ -4,17 +4,18 @@ import os
 from pyrogram import Client
 from config import Config
 
-def main():
-    plugins = dict(root="plugins")
-    app = Client("Message-Sender-Bot",
-                 bot_token=Config.BOT_TOKEN,
-                 api_id=Config.APP_ID,
-                 api_hash=Config.API_HASH,
-                 plugins=plugins,
-                 workers=100)
+class Bot(Client):
 
-    app.run()
+    def __init__(self):
+        super().__init__(
+            session_name="Message-Sender-Bot",
+            api_id=Config.APP_ID,
+            api_hash=Config.API_HASH,
+            bot_token=Config.BOT_TOKEN,
+            plugins={"root": "plugins"},
+            sleep_threshold=5
+        )
 
 
-if __name__ == "__main__":
-    main()
+app = Bot()
+app.run()
