@@ -49,7 +49,7 @@ async def privatemsg(bot, message):
     msg = str(message.text)
     d = await message.reply_text("**Processing...⏳**", quote=True)
     try:
-        await bot.send_message(LOGC, text=A.format(message.from_user.mention, message.from_user_id, msg))
+        await bot.send_message(Config.LOGC, text=A.format(message.from_user.mention, message.from_user_id, msg))
         await d.edit_text("**Your message has been forwarded to Admin(s) successfully.** It will be reviewed and you will get a reply soon.\n\n**~ @RKrishnaa ~**")
     except Exception as error:
         await d.edit_text(str(error))
