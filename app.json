@@ -1,0 +1,36 @@
+{
+    "name": "Message Sender Bot",
+    "description": "Message Sender Bot",
+    "keywords": [
+        "Message-Sender-Bot"
+    ],
+    "repository": "https://github.com/KoshikKumar17/Send-Bot",
+    "env": {
+        "APP_ID": {
+            "description": "",
+            "required": "True"
+        },
+        "API_HASH": {
+            "description": "",
+            "required": "True"
+        },
+        "BOT_TOKEN": {
+            "description": "",
+            "required": "True"
+        },
+        "AUTH_USERS": {
+            "description": "",
+            "required": "True"
+        }
+    },
+    "addons": [],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
