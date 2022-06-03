@@ -40,12 +40,11 @@ async def sendmsg(bot, message):
         await message.reply_text("/send {user id} \n\n Like:- `/send 1162032262`", quote=True)
         return
     p = await message.reply_text("**Processing...⏳**", quote=True)
-    x = message.reply_to_message
     id = message.text.split(" ")[1]
     try:
-        await bot.x.copy(chat_id=int(id))
+        await bot.message.reply_to_message.copy(chat_id=int(id))
         await p.edit_text(script.SEND)
-        await x.forward(LOGC)
+        await message.reply_to_message.forward(LOGC)
         await bot.send_message(LOGC, A.format(message.from_user.id, id)) 
     except Exception as error:
         await p.edit(str(error))
