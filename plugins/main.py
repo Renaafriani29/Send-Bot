@@ -48,7 +48,7 @@ async def sendmsg(bot, message):
 async def privatemsg(bot, message):
     if str(message.from_user.id) in Config.AUTH_USERS:
         return
-    if message.text.startswith('/')
+    if message.text.startswith('/'):
         return
     await message.reply_chat_action("typing")
     msg = str(message.text)
