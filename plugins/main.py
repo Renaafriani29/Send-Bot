@@ -8,12 +8,12 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyb
 #buttons
 BUTTONS1 = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('Made By', url='https://t.me/koshik_17'),
+        InlineKeyboardButton('Made By', url='https://t.me/RoBot_V2'),
         InlineKeyboardButton('Channel', url='https://t.me/RKrishnaa')
         ]]
     )
 
-A = """Message from {} with id {}.\n\n Message:{}"""
+A = """**Message from** {} **with id** {}.\n\n **Message:** {}"""
 
 
 @Client.on_message(filters.command(["start"]))
@@ -46,6 +46,7 @@ async def sendmsg(bot, message):
 
 @Client.on_message(filters.private & filters.text)
 async def privatemsg(bot, message):
+    await message.reply_chat_action("typing")
     msg = str(message.text)
     d = await message.reply_text("**Processing...⏳**", quote=True)
     try:
@@ -53,12 +54,13 @@ async def privatemsg(bot, message):
         await d.edit_text("**Your message has been forwarded to Admin(s) successfully.** It will be reviewed and you will get a reply soon.\n\n**~ @RKrishnaa ~**")
     except Exception as error:
         await d.edit_text(str(error))
-        await message.reply_text("Report this to @KOSHIK_17")
+        await message.reply_text("**Please report this Error to:** @RoBot_V2")
     
-
-
-
-
+@Client.on_message(filters.command(["help"]))
+async def sendmsg(bot, message):
+    await message.reply_chat_action("typing")
+    d = await message.reply_text("**Processing...⏳**", quote=True)
+    await d.edit_text(HELP)
 
 
 
