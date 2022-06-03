@@ -43,7 +43,6 @@ async def sendmsg(bot, message):
     x = message.reply_to_message
     id = message.text.split(" ")[1]
     try:
-        if x:
         await x.copy(chat_id={id})
         await p.edit_text(script.SEND)
         await x.forward(LOGC)
