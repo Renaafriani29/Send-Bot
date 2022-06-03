@@ -11,6 +11,7 @@ BUTTONS1 = InlineKeyboardMarkup(
         InlineKeyboardButton('Made By', url='https://t.me/koshik_17'),
         InlineKeyboardButton('Channel', url='https://t.me/RKrishnaa')
         ]]
+    )
 
 A = """👆 This message was sent by {} to {}."""
 
@@ -49,29 +50,6 @@ async def sendmsg(bot, message):
         await bot.send_message(LOGC, A.format(message.from_user.id, id)) 
     except Exception as error:
         await p.edit(str(error))
-
-@Client.on_message(filters.command('id'))
-async def showid(bot, message):
-    user_id = message.chat.id
-    first = message.from_user.first_name
-    last = message.from_user.last_name or ""
-    username = message.from_user.username
-    dc_id = message.from_user.dc_id or ""
-    await message.reply_text(
-        f"<b>➲ First Name:</b> {first}\n<b>➲ Last Name:</b> {last}\n<b>➲ Username:</b> {username}\n<b>➲ Telegram ID:</b> <code>{user_id}</code>\n<b>➲ Data Centre:</b> <code>{dc_id}</code>",
-        quote=True
-    )
-    z = message.reply_to_message
-    if z:
-    user_id = message.z.chat.id
-    first = z.from_user.first_name
-    last = z.from_user.last_name or ""
-    username = z.from_user.username
-    dc_id = z.from_user.dc_id or ""
-    await message.reply_text(
-        f"<b>➲ First Name:</b> {first}\n<b>➲ Last Name:</b> {last}\n<b>➲ Username:</b> {username}\n<b>➲ Telegram ID:</b> <code>{user_id}</code>\n<b>➲ Data Centre:</b> <code>{dc_id}</code>",
-        quote=True
-    )
 
 
 
