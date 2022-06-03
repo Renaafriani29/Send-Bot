@@ -44,8 +44,8 @@ async def sendmsg(bot, message):
     try:
         await message.reply_to_message.copy(chat_id=int(id))
         await p.edit_text(script.SEND)
-        await message.reply_to_message.forward(LOGC)
-        await bot.send_message(LOGC, A.format(message.from_user.id, id)) 
+        await message.reply_to_message.forward(Config.LOGC)
+        await bot.send_message(Config.LOGC, A.format(message.from_user.id, int(id))) 
     except Exception as error:
         await p.edit(str(error))
 
