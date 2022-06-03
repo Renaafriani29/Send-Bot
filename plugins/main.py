@@ -27,7 +27,7 @@ async def sendmsg(bot, message):
     await message.reply_chat_action("typing")
     t = await message.reply_text("__Authenticating...__")
     if str(message.from_user.id) not in Config.AUTH_USERS:
-        await k.edit_text(script.AUTH)
+        await t.edit_text(script.AUTH)
         return
     await t.edit_text("**Authentication Successful...✅**")
     if not message.reply_to_message:
