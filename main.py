@@ -5,7 +5,6 @@ from pyrogram import Client
 from config import Config
 
 class Bot(Client):
-
 def main():
     plugins = dict(root="plugins")
     app = Client("Message-Sender-Bot",
