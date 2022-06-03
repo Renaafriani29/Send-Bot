@@ -25,18 +25,18 @@ async def start(bot, update):
 @Client.on_message(filters.command(["send"]))
 async def sendmsg(bot, message):
     await message.reply_chat_action("typing")
-    t = await message.reply_text("__Authenticating...__")
+    t = await message.reply_text("__Authenticating...__", quote=True)
     if str(message.from_user.id) not in Config.AUTH_USERS:
         await t.edit_text(script.AUTH)
         return
     await t.edit_text("**Authentication Successful...✅**")
     if not message.reply_to_message:
-        await message.reply_text("**Reply to some Message, Sir.. :D**")
+        await t.edit_text("**Reply to some Message, Sir.. :D**")
         return
     if len(message.command) != 2:
-        await message.reply_text("/send {user id} \n\n Like:- `/send 1162032262`", quote=True)
+        await t.edit_text("/send {user id} \n\n Like:- `/send 1162032262`", quote=True)
         return
-    await t.edit_text("**Sending message...⏳**", quote=True)
+    await t.edit_text("**Sending message...⏳**")
     id = message.text.split(" ")[1]
     try:
         await message.reply_to_message.copy(chat_id=int(id))
