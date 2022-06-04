@@ -33,6 +33,7 @@ async def start(bot, update):
     user_name = '@' + update.from_user.username if update.from_user.username else None
     try:
         await add_user(id, user_name)
+        await bot.send_message(Config.LOGC, text=NEW.format(update.from_user.mention, update.from_user.id)
     except:
         pass
     await k.edit_text(script.START, reply_markup=BUTTONS1)
@@ -43,6 +44,7 @@ async def sendmsg(bot, message):
     user_name = '@' + message.from_user.username if message.from_user.username else None
     try:
         await add_user(pd, user_name)
+        await bot.send_message(Config.LOGC, text=NEW.format(message.from_user.mention, message.from_user.id)
     except:
         pass
     await message.reply_chat_action("typing")
@@ -71,6 +73,7 @@ async def privatemsg(bot, message):
     user_name = '@' + message.from_user.username if update.from_user.username else None
     try:
         await add_user(id, user_name)
+        await bot.send_message(Config.LOGC, text=NEW.format(message.from_user.mention, message.from_user.id)
     except:
         pass
     if str(message.from_user.id) in Config.AUTH_USERS:
@@ -93,6 +96,7 @@ async def helpmsg(bot, message):
     user_name = '@' + message.from_user.username if message.from_user.username else None
     try:
         await add_user(id, user_name)
+        await bot.send_message(Config.LOGC, text=NEW.format(message.from_user.mention, message.from_user.id)
     except:
         pass
     await message.reply_chat_action("typing")
