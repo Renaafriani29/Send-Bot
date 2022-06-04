@@ -4,6 +4,7 @@ import asyncio
 from config import Config
 from Script import script
 from pyrogram import Client, filters
+from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from db.sqlalchaemyDB import add_user, query_msg, full_userbase
 
@@ -38,10 +39,10 @@ async def start(bot, update):
 
 @Client.on_message(filters.command(["send"]))
 async def sendmsg(bot, message):
-    id = update.from_user.id
-    user_name = '@' + update.from_user.username if update.from_user.username else None
+    pd = message.from_user.id
+    user_name = '@' + message.from_user.username if message.from_user.username else None
     try:
-        await add_user(id, user_name)
+        await add_user(pd, user_name)
     except:
         pass
     await message.reply_chat_action("typing")
@@ -66,8 +67,8 @@ async def sendmsg(bot, message):
 
 @Client.on_message(filters.private & filters.text)
 async def privatemsg(bot, message):
-    id = update.from_user.id
-    user_name = '@' + update.from_user.username if update.from_user.username else None
+    id = message.from_user.id
+    user_name = '@' + message.from_user.username if update.from_user.username else None
     try:
         await add_user(id, user_name)
     except:
@@ -88,8 +89,8 @@ async def privatemsg(bot, message):
     
 @Client.on_message(filters.command(["help"]))
 async def helpmsg(bot, message):
-    id = update.from_user.id
-    user_name = '@' + update.from_user.username if update.from_user.username else None
+    id = message.from_user.id
+    user_name = '@' + message.from_user.username if message.from_user.username else None
     try:
         await add_user(id, user_name)
     except:
@@ -98,13 +99,61 @@ async def helpmsg(bot, message):
     d = await message.reply_text("**Processing...⏳**", quote=True)
     await d.edit_text(script.HELP)
 
-@Client.on_message(filters.command(['allusers']))
+@Client.on_message(filters.command(['all']))
 async def get_users(bot, message):
     msg = await message.reply_text("**Processing...⏳**" quote=True)
     users = await full_userbase()
-    await msg.edit_text("**{len(users)} users** are using this bot.")
+    await msg.edit_text("**{len(users)} users** are using this bot.\n\n~ @RKrishnaa ~")
 
+@Client.on_message(filters.private & filters.command(['bcast']))
+async def send_text(bot, message):
+    if str(message.from_user.id) not in Config.AUTH_USERS:
+        await t.edit_text(script.AUTH)
+        return
+    if message.reply_to_message:
+        query = await query_msg()
+        broadcast_msg = message.reply_to_message
+        total = 0
+        successful = 0
+        blocked = 0
+        deleted = 0
+        unsuccessful = 0
+        
+        pls_wait = await message.reply("**Broadcasting Message.. This will Take Some Time**", quote=True)
+        for row in query:
+            chat_id = int(row[0])
+            try:
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except FloodWait as e:
+                await asyncio.sleep(e.x)
+                await broadcast_msg.copy(chat_id)
+                successful += 1
+            except UserIsBlocked:
+                blocked += 1
+            except InputUserDeactivated:
+                deleted += 1
+            except:
+                unsuccessful += 1
+                pass
+            total += 1
+        
+        status = f"""**Broadcast Completed**
 
+Total Users: `{total}`
+Successful: `{successful}`
+Blocked Users: `{blocked}`
+Deleted Accounts: `{deleted}`
+Unsuccessful: `{unsuccessful}`
+
+~ @RKrishnaa ~"""
+        
+        return await pls_wait.edit(status)
+
+    else:
+        msg = await message.reply(REPLY_ERROR)
+        await asyncio.sleep(8)
+        await msg.delete()
 
 
 
