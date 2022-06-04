@@ -40,13 +40,6 @@ async def start(bot, update):
 
 @Client.on_message(filters.command(["send"]))
 async def sendmsg(bot, message):
-    pd = message.from_user.id
-    user_name = '@' + message.from_user.username if message.from_user.username else None
-    try:
-        await add_user(pd, user_name)
-        await bot.send_message(Config.LOGC, text=NEW.format(message.from_user.mention, message.from_user.id)
-    except:
-        pass
     await message.reply_chat_action("typing")
     t = await message.reply_text("__Authenticating...__", quote=True)
     if str(message.from_user.id) not in Config.AUTH_USERS:
