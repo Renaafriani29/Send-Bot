@@ -62,12 +62,6 @@ async def sendmsg(bot, message):
 
 @Client.on_message(filters.private & filters.text)
 async def privatemsg(bot, message):
-    id = message.from_user.id
-    user_name = '@' + message.from_user.username if message.from_user.username else None
-    try:
-        await add_user(id, user_name)
-    except:
-        pass
     if str(message.from_user.id) in Config.AUTH_USERS:
         return
     if message.text.startswith('/'):
@@ -85,18 +79,12 @@ async def privatemsg(bot, message):
 
 @Client.on_message(filters.command(["help"]))
 async def helpmsg(bot, message):
-    id = message.from_user.id
-    user_name = '@' + message.from_user.username if message.from_user.username else None
-    try:
-        await add_user(id, user_name)
-        await bot.send_message(Config.LOGC, text=NEW.format(message.from_user.mention, message.from_user.id))
-    except:
-        pass
     await message.reply_chat_action("typing")
     d = await message.reply_text("**Processing...⏳**", quote=True)
     await d.edit_text(script.HELP)
 
-@Client.on_message(filters.command(['all']))
+
+@Client.on_message(filters.command(['users']))
 async def get_users(bot, message):
     msg = await message.reply_text("**Processing...⏳**", quote=True)
     users = await full_userbase()
@@ -104,7 +92,7 @@ async def get_users(bot, message):
 
 
 @Client.on_message(filters.private & filters.command(['bcast']))
-async def send_text(bot, message):
+async def broadcast(bot, message):
     if str(message.from_user.id) not in Config.AUTH_USERS:
         await t.edit_text(script.AUTH)
         return
