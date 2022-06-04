@@ -20,7 +20,8 @@ async def helpmsg(bot, message):
 async def get_users(bot, message):
     msg = await message.reply_text("**Processing...⏳**", quote=True)
     users = await full_userbase()
-    await msg.edit_text("**{len(users)} users** are using this bot.\n\n~ @RKrishnaa ~")
+    total = int(len(users))
+    await msg.edit_text("**{total} users** are using this bot.\n\n~ @RKrishnaa ~")
 
 
 @Client.on_message(filters.private & filters.command(['bcast']))
