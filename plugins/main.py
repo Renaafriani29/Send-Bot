@@ -100,7 +100,7 @@ async def helpmsg(bot, message):
 
 @Client.on_message(filters.command(['all']))
 async def get_users(bot, message):
-    msg = await message.reply_text("**Processing...⏳**" quote=True)
+    msg = await message.reply_text("**Processing...⏳**", quote=True)
     users = await full_userbase()
     await msg.edit_text("**{len(users)} users** are using this bot.\n\n~ @RKrishnaa ~")
 
