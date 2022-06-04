@@ -49,7 +49,7 @@ async def sendmsg(bot, message):
         await t.edit_text("**Reply to some Message, Sir.. :D**")
         return
     if len(message.command) != 2:
-        await t.edit_text("/send {user id} \n\n Like:- `/send 1162032262`", quote=True)
+        await t.edit_text("/send {user id} \n\n Like:- `/send 1162032262`")
         return
     await t.edit_text("**Sending message...⏳**")
     id = message.text.split(" ")[1]
