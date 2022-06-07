@@ -104,7 +104,7 @@ async def privatemsg(bot, message):
         await message.reply_text("**Please report this Error to:** @RoBot_V2")
 
 
-@Client.on_message((filters.private | filters.group) & filters.command('status'))
+@Client.on_message(filters.command(["status"]))
 async def bot_dyno_status(client,message):
     px = await message.reply_text("**Fetching Bot Status...✨**", quote=True)
     if HEROKU_API_KEY:
