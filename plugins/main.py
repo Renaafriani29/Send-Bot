@@ -7,6 +7,8 @@ import shutil
 import heroku3
 import requests
 import asyncio
+from config import Config
+from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
