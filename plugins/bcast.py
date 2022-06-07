@@ -36,7 +36,7 @@ async def broadcast(bot, message):
         blocked = 0
         deleted = 0
         unsuccessful = 0
-        
+
         pls_wait = await message.reply("**Broadcasting Message.. This will Take Some Time**", quote=True)
         for row in query:
             chat_id = int(row[0])
@@ -51,11 +51,8 @@ async def broadcast(bot, message):
                 blocked += 1
             except InputUserDeactivated:
                 deleted += 1
-            except:
-                unsuccessful += 1
-                pass
             total += 1
-        
+
         status = f"""**Broadcast Completed**
 Total Users: `{total}`
 Successful: `{successful}`
@@ -63,7 +60,7 @@ Blocked Users: `{blocked}`
 Deleted Accounts: `{deleted}`
 Unsuccessful: `{unsuccessful}`
 ~ @RKrishnaa ~"""
-        
+
         return await pls_wait.edit(status)
 
     else:

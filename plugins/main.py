@@ -30,7 +30,10 @@ async def start(bot, update):
     await update.reply_chat_action("typing")
     k = await update.reply_text("**Processing...⏳**", quote=True)
     id = update.from_user.id
-    user_name = '@' + update.from_user.username if update.from_user.username else None
+    user_name = (
+        f'@{update.from_user.username}' if update.from_user.username else None
+    )
+
     try:
         await add_user(id, user_name)
         await bot.send_message(Config.LOGC, text=NEW.format(update.from_user.mention, update.from_user.id))
