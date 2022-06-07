@@ -1,7 +1,7 @@
 class script(object):
     START = """**Hello 👋,**
 
-**This Bot Is Made Only For Requesting (RK and JKLK) Episodes.**
+**This Bot Is Made For Requesting (RK and JKLK) Episodes or anything related with @RKrishnaa .**
 
 **Check** /help •
 
@@ -14,12 +14,14 @@ class script(object):
 
 **-> Send a Message containing Show's name(RK or JKLK) , Season no., Episode no. and Quality.**
 
+**-> Anything or Movies also related with @The_Entertainment.**
+
 __-> Request will be accepted only from **7:00 AM** to **10:00 PM** IST.__ 🇮🇳
 
 **---**
-**Note:** __Don't send hi, hello. Request only one episode at a time. Anything other than requesting will be ignored.__
+**Note:** __Don't send hi, hello. Request only one episode/movie at a time. Anything other than requesting will be ignored.__
 
-**Example :-** `RadhaKrishn S4 E100 in 720p`
+**Example :-** `RadhaKrishn S4 E100 in 720p` or `Radhe Shyam 2022 in 720p`
 __
 
 • @RKrishnaa
