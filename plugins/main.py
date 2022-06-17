@@ -51,7 +51,7 @@ async def sendmsg(bot, message):
         return
     await t.edit_text("**Authentication Successful...✅**")
     if not message.reply_to_message:
-        await t.edit_text("**Reply to some Message, Sir.. :D**")
+        await t.edit_text("**Reply to some Message.**")
         return
     if len(message.command) != 2:
         await t.edit_text("/send {user id} \n\n Like:- `/send 1162032262`")
