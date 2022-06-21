@@ -44,7 +44,7 @@ async def start(bot, update):
     except:
         pass
     if update.text == "/start":
-    await k.edit_text(script.START, reply_markup=BUTTONS1)
+        await k.edit_text(script.START, reply_markup=BUTTONS1)
     else:
         cmd = update.text.split(" ", 1)[1]
         if cmd == "help":
