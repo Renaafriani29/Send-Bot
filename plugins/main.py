@@ -44,7 +44,6 @@ async def start(bot, update):
             await add_user(id, user_name)
             await bot.send_message(Config.LOGC, text=NEW.format(update.from_user.mention, update.from_user.id))
         except:
-            pass
             await k.edit_text(script.START, reply_markup=BUTTONS1)
     else:
         cmd = update.text.split(" ", 1)[1]
