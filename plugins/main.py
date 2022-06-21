@@ -17,7 +17,7 @@ BUTTONS1 = InlineKeyboardMarkup(
         InlineKeyboardButton('⭐ Made By ⭐', url='https://t.me/RoBot_V2'),
         InlineKeyboardButton('💥 Channel 💥', url='https://t.me/RKrishnaa')
         ],[
-        InlineKeyboardButton('🙂 Help 🙂', callback_data='help'),
+        InlineKeyboardButton('🙂 Help 🙂', url='https://t.me/TheMsgSendBot?start=help'),
         InlineKeyboardButton('🔐 Close 🔐', callback_data='close')
         ]]
     )
@@ -95,6 +95,4 @@ async def privatemsg(bot, message):
 async def cb_data(bot, update):
     if update.data == "close":
         await update.message.delete()
-    elif update.data == "help":
-        await helpmsg(bot, update)
 #===========>
