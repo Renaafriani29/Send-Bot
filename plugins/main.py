@@ -17,7 +17,7 @@ BUTTONS1 = InlineKeyboardMarkup(
         InlineKeyboardButton('⭐ Made By ⭐', url='https://t.me/RoBot_V2'),
         InlineKeyboardButton('💥 Channel 💥', url='https://t.me/RKrishnaa')
         ],[
-        InlineKeyboardButton('🙂 Help 🙂', callback_data='help')
+        InlineKeyboardButton('🙂 Help 🙂', callback_data='help'),
         InlineKeyboardButton('🔐 Close 🔐', callback_data='close')
         ]]
     )
