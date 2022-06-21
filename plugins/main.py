@@ -14,11 +14,12 @@ from plugins.bcast import helpmsg
 #buttons
 BUTTONS1 = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('Made By', url='https://t.me/RoBot_V2'),
-        InlineKeyboardButton('Channel', url='https://t.me/RKrishnaa')
+        InlineKeyboardButton('⭐ Made By ⭐', url='https://t.me/RoBot_V2'),
+        InlineKeyboardButton('💥 Channel 💥', url='https://t.me/RKrishnaa')
         ],[
+        InlineKeyboardButton('🙂 Help 🙂', callback_data='help')
         InlineKeyboardButton('🔐 Close 🔐', callback_data='close')
-]]
+        ]]
     )
 
 #=====================================================================================##
@@ -48,7 +49,7 @@ async def start(bot, update):
     else:
         cmd = update.text.split(" ", 1)[1]
         if cmd == "help":
-            await helpmsg(bot, message)
+            await helpmsg(bot, update)
 
 @Client.on_message(filters.command(["send"]))
 async def sendmsg(bot, message):
@@ -95,5 +96,5 @@ async def cb_data(bot, update):
     if update.data == "close":
         await update.message.delete()
     elif update.data == "help":
-        await helpmsg(bot, message)
+        await helpmsg(bot, update)
 #===========>
