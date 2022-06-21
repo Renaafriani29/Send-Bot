@@ -10,9 +10,9 @@ from db.sqlalchemyDB import add_user, query_msg, full_userbase
 
 
 @Client.on_message(filters.command(["help"]))
-async def helpmsg(bot, message):
-    await message.reply_chat_action("typing")
-    d = await message.reply_text("**Processing...⏳**", quote=True)
+async def helpmsg(bot, update):
+    await update.reply_chat_action("typing")
+    d = await update.reply_text("**Processing...⏳**", quote=True)
     await d.edit_text(script.HELP)
 
 
