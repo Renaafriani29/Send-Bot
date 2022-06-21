@@ -7,6 +7,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup
 from db.sqlalchemyDB import add_user, query_msg, full_userbase
+from plugins.bcast import helpmsg
 
 #=====================================================================================##
 
@@ -15,7 +16,9 @@ BUTTONS1 = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('Made By', url='https://t.me/RoBot_V2'),
         InlineKeyboardButton('Channel', url='https://t.me/RKrishnaa')
-        ]]
+        ],[
+        InlineKeyboardButton('🔐 Close 🔐', callback_data='close')
+]]
     )
 
 #=====================================================================================##
@@ -40,7 +43,12 @@ async def start(bot, update):
         await bot.send_message(Config.LOGC, text=NEW.format(update.from_user.mention, update.from_user.id))
     except:
         pass
+    if update.text == "/start":
     await k.edit_text(script.START, reply_markup=BUTTONS1)
+    else:
+        cmd = update.text.split(" ", 1)[1]
+        if cmd == "help":
+            await helpmsg(bot, message)
 
 @Client.on_message(filters.command(["send"]))
 async def sendmsg(bot, message):
@@ -80,3 +88,12 @@ async def privatemsg(bot, message):
     except Exception as error:
         await d.edit_text(str(error))
         await message.reply_text("**Please report this Error to:** @RoBot_V2")
+
+#===========>
+@Client.on_callback_query()
+async def cb_data(bot, update):
+    if update.data == "close":
+        await update.message.delete()
+    elif update.data == "help":
+        await helpmsg(bot, message)
+#===========>
