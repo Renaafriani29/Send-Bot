@@ -24,7 +24,7 @@ BUTTONS1 = InlineKeyboardMarkup(
 
 #=====================================================================================##
 
-A = """**Message from** {} **with id** {}.\n\n **Message:** {}"""
+A = """**Message from {} with id `{}`.\n\n **Message:**\n `{}"`\n\n#INCOMPLETE""
 NEW = """#NEWUSER \n\n Name:- {} \n ID:- {} \n started your bot."""
 
 #=====================================================================================##
