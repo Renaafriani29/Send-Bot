@@ -39,7 +39,6 @@ async def start(bot, update):
         user_name = (
             f'@{update.from_user.username}' if update.from_user.username else None
         )
-
         try:
             await add_user(id, user_name)
             await bot.send_message(Config.LOGC, text=NEW.format(update.from_user.mention, update.from_user.id))
