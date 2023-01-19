@@ -1,3 +1,3 @@
 # Send-Bot
 
-[@RKrishnaa](https://rkrishnaa.t.me)
+[@RKrishnaa](https://telegram.me/rkrishnaa)
